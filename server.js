@@ -37,8 +37,8 @@ app.get('/api/list', function (req, res) {
   //    console.log('\n' + item.value.title +'\n');
      list.push(item.value);
     });
+    res.json(list);
     console.log(list,'<<<<<<<<<<< app.GET');
-    res.json(results);
   })
   .fail(function (err) {
     console.error(err);
