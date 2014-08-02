@@ -11,8 +11,6 @@ var db = require('orchestrate')(config.dbKey);
 
 var app = express();
 
-var megaCounter =0;
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,8 +19,7 @@ app.engine('html', consolidate.handlebars);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/templates');
 
-// express routes
-
+// express route
 app.get('/', function (req, res) {
   res.render('./index.html');
 });
@@ -34,11 +31,9 @@ app.get('/api/list', function (req, res) {
   db.list('MTG cards')
   .then(function (result) {
   result.body.results.forEach(function (item){
-  //    console.log('\n' + item.value.title +'\n');
      list.push(item.value);
     });
-    console.log(list,'<<<<<<<<<<< app.GET');
-    res.json(results);
+    res.json(list);
   })
   .fail(function (err) {
     console.error(err);
@@ -46,10 +41,10 @@ app.get('/api/list', function (req, res) {
 });
 
 app.post('/api/list', function (req, res){
+  var d = new Date();
   req.accepts('application/json');
-  db.put('MTG cards', ('card' + megaCounter++), req.body)
+  db.put('MTG cards', ('card' +d.getTime()), req.body)
   .then(function (){
-    console.log(req.body, '^^^^^^^^^^^^^^^^ APP.POST');
     res.send(200, 'ok, we added your card, here is what you added');
   })
   .fail(function (err) {

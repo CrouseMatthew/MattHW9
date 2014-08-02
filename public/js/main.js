@@ -10,39 +10,52 @@ var CardsCollection = Backbone.Collection.extend({
 
 var cardsCollection = new CardsCollection(); // start a new collection.
 
-// create an array of card names for testing. The temp variable is used to
-// store the concatenated URL to find card images.
-var list = [];
-var temp ='';
+/**
+ * This prototype function takes in  a string and converts it to proper title case
+ *  it also takes into account common words that are not capitalized
+ *   for title case
+ * @return {[String]} [A string that is title case]
+ */
+String.prototype.toProperCase = function () {
+  var i, j, str, lowers;
+  this.toLowerCase();
+  str= this.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() +
+    txt.substr(1).toLowerCase();});
+  lowers = {'A ':'a ', 'An ':'am ', 'The ':'the ', 'And ':'and ', 'But ':'but ',
+    'Or ':'or ','For ':'for ', 'Nor ':'nor ', 'As ':'as ', 'At ':'at ',
+    'By ':'by ', 'From ':'from ', 'In ':'in ', 'Into ':'into ','Of ':'of ',
+    'On ':'on ', 'Onto ':'onto ', 'To ':'to ', 'With ':'with '};
 
+  for (var val in lowers)
+    str = str.replace(new RegExp(val, "g"), lowers[val]);
+    return str;
+  };
 
-
- list.push('Child of Night');
- list.push('Solemn Offering');
- list.push('Angelic Wall');
-
-//var rand = Math.random()*list.length;
-//rand = Math.floor(rand);
-
+/**
+ *  accesses a local Chaisson file that contains all card information from the
+ *  2015 core set of magic the gathering. Compares it to the string name
+ *  passed in from the form, and searches the juice on file for the proper
+ *  card information.
+ * @param  {[Jace on file]} data [Natural gathering card information]
+ */
 $.getJSON("/js/lib/M14.json", function(data){
+  var temp = '';
+  $('#btn-add').click(function(){
+  data_array = $("form").serializeArray();
+  temp = data_array[0].value;
+  var input = temp.toProperCase();
+  console.log(input);
+
   data.cards.forEach(function(cardInfo, index){
-
-      (function populate(){
-
-        var card ={};
-          list.forEach(function(name, index){
-            if( cardInfo.name === name){
-            card.title = name;
-            card.img = htmlLink + (name.replace(/\ /g, '%20')) +'.jpg';
-            card.text = cardInfo.text;
-            console.log('\n', card.title, '\n');
-
-            cardsCollection.create(card);
-            card ={};
-          }
-        });
-
-      })();
+    if(cardInfo.name === input){
+      console.log(input);
+      var card = {};
+      card.title = input;
+      card.img = htmlLink + (input.replace(/\ /g, '%20')) +'.jpg';
+      card.text = cardInfo.text;
+      cardsCollection.create(card);
+      input ="";
+    }});
 
    });
   $(function () {
@@ -65,17 +78,31 @@ var Router = Backbone.Router.extend({
 
 var HomeView = Backbone.View.extend({
   el: 'tbody',
+    initialize: function () {
+      var self = this;
+      this.collection.fetch({
+        success: function () {
+          console.log("collection Fetched");
+        },
+        error: function () {
+          console.log("the collection did not fetch");
+        }
+      });
 
+      this.listenTo(this.collection, 'sort', this.render); //'refrsh on card sort'
+    },
     render: function () {
-      cardsCollection.fetch({success:function(){
-      for (var i=0; i < cardsCollection.length;++i){
-        console.log(cardsCollection.models.length);
-        temp +='<tr><td style ="display: inline-block; width: 200"><img width="200" class="img-responsive" src= '+
-        cardsCollection.models[i].attributes.img +'></td>' + '<td style ="float: left width:200" align ="left">' +
-        cardsCollection.models[i].attributes.text+'</td></tr>';
+      temp ="";
+      console.log(temp);
+      for (var i=0; i < this.collection.length;++i){
+        console.log(this.collection.length);
+        temp +='<tr><td style ="display: inline-block; width: 200">' +
+        '<img width="200" class="img-responsive" src= '+
+        this.collection.models[i].attributes.img +'></td>' +
+        '<td style ="float: left width:200" align ="left">' +
+        this.collection.models[i].attributes.text+'</td></tr>';
        }
-         $(this.el).html(temp);
-       }});
+         $(this.$el).html(temp);
    }
   });
 
