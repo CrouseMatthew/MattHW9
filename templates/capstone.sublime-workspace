@@ -1,0 +1,1091 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"background",
+				"background-color:   (property)"
+			],
+			[
+				"att",
+				"attributes	jsDOM"
+			],
+			[
+				"par",
+				"parse	jsDate"
+			],
+			[
+				"v",
+				"value	jsDOM"
+			],
+			[
+				"backgrou",
+				"background-color:   (property)"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"app",
+				"append	jQuery"
+			],
+			[
+				"pre",
+				"prepend	jQuery"
+			],
+			[
+				"append",
+				"appendTo	jQuery"
+			],
+			[
+				"child",
+				"childNodes	jsDOM"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"proce",
+				"process.argv"
+			],
+			[
+				"conso",
+				"console.log"
+			],
+			[
+				"on",
+				"on('data"
+			],
+			[
+				"con",
+				"console.log"
+			],
+			[
+				"http",
+				"http.get"
+			],
+			[
+				"mod",
+				"module.exports"
+			],
+			[
+				"createS",
+				"http.createServer"
+			],
+			[
+				"readFile",
+				"fs.readFileSync"
+			],
+			[
+				"proc",
+				"process.argv"
+			],
+			[
+				"pro",
+				"process.argv"
+			],
+			[
+				"log",
+				"console.log"
+			],
+			[
+				"forea",
+				"_.forEach"
+			],
+			[
+				"D",
+				"DOCTYPE  (doctype)"
+			],
+			[
+				"shallow",
+				"shallow"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"img",
+				"img_wrapper"
+			],
+			[
+				"b",
+				"bolder"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"margin-",
+				"margin-right"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"get",
+				"getElementById  (function)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/database/dbMain.js",
+			"settings":
+			{
+				"buffer_size": 234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n/**\n * Creates a BinarySearchTree toolbox function\n * that will be utilized to build a decision tree\n * calling the BinarySearchTree function you will\n * create a tree with a root node.\n *\n * To avoid errors the database should be built from the root down\n *         []<-root\n */\nfunction BinarySearchTree() {\n    this.root = null;\n}\n\n\nBinarySearchTree.prototype = {\n    /**\n     * adds the  \"add\" method to the BinarySearchTree Prototype\n     * this can be used to add a node to the tree.\n     * @param {Array} data [This is the array of questions in the tree]\n     * @param {number} id  [also pass a number value to the add function\n     *                      so that the function knows where to place it]\n     */\n    add: function (data, id){\n    var node = {\n        \"id\": id,\n        \"questions\": data,\n        \"left\": null,\n        \"right\": null\n    };\n//console.log(node);\n\n    var current; //current pointer. use to find things in the tree.\n\n    /**\n     * Checks to see if root is null, if it is then adds the node there\n     * @type {[node]}\n     */\n    if(this.root === null){\n        this.root = node;\n    } else {\n    current = this.root;\n\n    /**\n     * if root does exist traverse the tree until you reach the end.\n     * and add where needed. All instances of current.left/right = node\n     * is a creation of a new node.\n     */\n    while(current){\n        if(id < current.id){\n            if(current.left === null){\n                current.left = node;\n                break;\n            }else{\n                current = current.left;\n            }\n        } else if (id > current.id){\n            if(current.right === null){\n                current.right = node;\n                break;\n            } else {\n                current = current.right;\n            }\n            }else {\n                    break;\n                }\n            }\n        }\n    },\n\n\n    remove: function (data){\n        var found = false;\n        var parent = null;\n        var current = this.root;\n        var childCount;\n        var replacementNode;\n        var replacementParent;\n\n        while(!found && current){\n            if(data.id < current.id){\n                parent = current;\n                current = current.left;\n            } else if ( vdata.id > current.id){\n                parrent = current;\n                current = current.right;\n            } else {\n                found = true;\n            }\n        }\n\n        if (found){\n            childCount = (current.left !== null ? 1: 0) +\n                (current.right !== null ? 1: 0);\n            if (current === this.root){\n                switch (childCount){\n                    case 0:\n                        this.root = null;\n                        break;\n                    case 1:\n                        this.root = (cirrent.right === null ?\n                         current.left : current.right);\n                        break;\n                    case 2:\n                        replacementNode = currentNode.left;\n                        replacementParent = currentNode;\n\n                        while(replacementNode.right !== null){\n                            replacementParent = replacementNode;\n                            replacementNode = replacementNode.right;\n                        }\n\n                        replacementParent.right = replacementNode.left;\n\n                        replacementNode.right = currentNode.right;\n                        replacementNode.left = currentNode.left;\n\n                        if (currentNode.data < parentNode.data){\n                            parentNode.left = replacementNode;\n                        } else {\n                            parentNode.right = replacementNode;\n                        }\n                }\n            }\n        }\n    },\n\n    traverse: function (convertFunciton){\n        function iterate(node){\n            if (node){\n                if(node.left !== null){\n                    iterate(node.left);\n                }\n                convertFunciton.call(this, node);\n\n                if(node.right !== null){\n                    iterate(node.right);\n                }\n            }\n        }\n        iterate(this.root);\n    },\n\n    toArray: function(){\n        var result = [];\n        this.traverse(function(node){\n            result.push(node.data);\n        });\n\n        return result;\n    },\n\n    toString: function (){\n        return this.toArray.toString();\n    },\n\n    display: function(){\n        console.log(\"\\n============In the display function==================\\n\");\n        if( this.root !==\\ null){\nconsole.log(\"root is not null\");\n            var current = this.root;\n            while(current){\n                if(current.left !== null){\n                    current= current.left;\n                }\n                console.log(current.questions);\n\n                if(current.right !== null){\n                    current = current.right;\n                }\n                console.log(current.questions);\n            }\n        }\n    },\n\n};\n\nmodule.exports = BinarySearchTree;\n",
+			"file": "/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/database/database.js",
+			"file_size": 5052,
+			"file_write_time": 130517555723701698,
+			"settings":
+			{
+				"buffer_size": 5054,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/JS.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"tag",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"json",
+				"JSHint: Set Plugin Options"
+			],
+			[
+				"jsh",
+				"JSHint: Set Plugin Options"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"js",
+				"JsonTree: Show Tree"
+			],
+			[
+				"google",
+				"Google Spell Check"
+			],
+			[
+				"",
+				"API-Completion-Package: Settings – User"
+			],
+			[
+				"AP",
+				"API-Completion-Package: Settings – User"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"pa",
+				"Package Control: List Packages"
+			],
+			[
+				"pak",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"diff",
+				"Set Syntax: Diff"
+			],
+			[
+				"sublime linter",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"API",
+				"API-Completion-Package: Settings – Default"
+			],
+			[
+				"a",
+				"API-Completion-Package: Settings – User"
+			],
+			[
+				"pacl",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"set",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jshint",
+				"JSHint: Set Linting Preferences"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"upd",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"projec",
+				"Project: Add Folder"
+			],
+			[
+				"projects",
+				"Project: Close"
+			],
+			[
+				"pro",
+				"Project: Save As"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			]
+		],
+		"width": 536.0
+	},
+	"console":
+	{
+		"height": 365.0,
+		"history":
+		[
+			"restart",
+			"rm Sublime Text 3/Installed Packages/SideBarEnhancements.sublime-package",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/.gitignore",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/public/css/bootstrap.css",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/templates/index.html",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/testing/testdatabase.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/testing/testdbmain.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/templates/mystyle.css",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/public/css/mycss.css",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/js/views/database.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/server.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/js/locations.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/config.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/server.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/capstone.sublime-project",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/js/database.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/templates/error.html",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/public/js/lib/M14.json",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/MattHW9/public/js/views/input-view.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/server.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/public/js/views/input-view.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/templates/index.html",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/index.html",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/test.html",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/css/style.css",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/css/lib/base.css",
+		"/C/Users/Matt/Dropbox/work Docs/work/OneLoginFinalv2.html",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/css/font-awesome.min.css",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/css/lib/font-awesome.min.css",
+		"/C/Users/Matt/Desktop/Portfolio/Portfolio/index.html.BACKUP.6572.html",
+		"/C/Users/Matt/Dropbox/PCS/Group-Project/index.html",
+		"/C/Users/Matt/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/public/js/lib/M14.json",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/index.html",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/2-learn-model/public/js/main-answer.js",
+		"/C/Users/Matt/Downloads/M14.json",
+		"/C/Users/Matt/Downloads/M14-x.json",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/M14.json",
+		"/C/Users/Matt/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/.jshintrc",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/2-learn-model/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/2-learn-model/server.js",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/2-learn-model/index.html",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/index.html",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/M14.json",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/server.js",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/1-learn-router-and-view/public/js/main-comments.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/3-organizer.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/todo-server-switch.js",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/1-learn-router-and-view/public/js/main.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/hw9testing/todo-apps/M15.json",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/TRIGapp.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/public/js/views/contacts-main-view.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/public/js/views/list-main-view.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/public/js/views/wishlist-list-view.js",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/templates/error.html",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/README.md",
+		"/C/Users/Matt/Dropbox/PCS/jsHomework/jsn-sum14-9/orchestrate-examples/2-orch/config.js",
+		"/C/Users/Matt/Dropbox/PCS/js-night/backbone-lessons/6-learn-persistence-answer/server.js",
+		"/C/Users/Matt/AppData/Roaming/Sublime Text 3/Packages/User/sublime-API-Completions-Package.sublime-settings",
+		"/C/Users/Matt/AppData/Roaming/Sublime Text 3/Packages/JavaScript and jQuery API Completions/sublime-API-Completions-Package.sublime-settings",
+		"/C/Users/Matt/Dropbox/PCS/learnNode/node_modules/concat-stream/package.json",
+		"/C/Users/Matt/Dropbox/PCS/js-night/core-js-lessons/exercises/HW2/pseudo-array-template.js",
+		"/C/Users/Matt/Dropbox/PCS/gitpractice/practice/prac.html",
+		"/C/Users/Matt/Dropbox/work Docs/work/OneLoginV2/BrandExperienceV4.html",
+		"/C/Users/Matt/Dropbox/work Docs/work/OneLoginV2/BrandExperienceV3.html",
+		"/home/matthew/Desktop/work/scratch.html",
+		"/home/matthew/Desktop/work/OneLoginFinalv2.html",
+		"/home/matthew/Desktop/work/marketo.html",
+		"/home/matthew/Desktop/work/workNotes.txt",
+		"/home/matthew/Desktop/work/unsub.html",
+		"/home/matthew/Desktop/work/OneLoginFinalCustomUnsub.html",
+		"/home/matthew/Desktop/work/currentV8.html",
+		"/home/matthew/Desktop/work/currentV9.html",
+		"/home/matthew/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/matthew/Desktop/work/currentV1.html",
+		"/home/matthew/Desktop/work/original.html",
+		"/home/matthew/Desktop/work/latest.html",
+		"/home/matthew/Desktop/PCS/jsHomework/jsn-sum14-4/crouse/question2.js",
+		"/home/matthew/Desktop/work/working.html",
+		"/home/matthew/Desktop/PCS/jsHomework/jsn-sum14-5/README.md",
+		"/home/matthew/Desktop/PCS/html email/notes.txt",
+		"/home/matthew/Desktop/work/currentV2.html",
+		"/home/matthew/Desktop/work/currentV3.html",
+		"/home/matthew/Desktop/work/currentV4.html",
+		"/home/matthew/Desktop/PCS/html email/stage_4.2_email_css_mobile.html",
+		"/home/matthew/Desktop/PCS/learnNode/toupper.js",
+		"/home/matthew/Desktop/PCS/learnNode/fileServer.js",
+		"/home/matthew/Desktop/PCS/learnNode/httpCollect.js",
+		"/home/matthew/Desktop/PCS/html email/stage_3.3_email_css_fixed.html",
+		"/home/matthew/Desktop/PCS/html email/stage_3.3_email_css_blocks.html",
+		"/home/matthew/Desktop/PCS/html email/stage_3.2_email_css_scaffold.html",
+		"/home/matthew/Desktop/PCS/html email/stage_2.3_email_html_combined.html",
+		"/home/matthew/Downloads/htmlemails/stage_2.2_email_html_blocks.html",
+		"/home/matthew/Downloads/htmlemails/stage_2.1_email_html_scaffold.html",
+		"/home/matthew/Desktop/PCS/jsHomework/jsn-sum14-5/matt/mattC.js",
+		"/home/matthew/Downloads/htmlemails/stage_4.2_email_css_mobile.html",
+		"/home/matthew/Desktop/PCS/learnNode/server.js",
+		"/home/matthew/Desktop/PCS/learnNode/module.js",
+		"/home/matthew/Desktop/PCS/learnNode/htttp.js",
+		"/home/matthew/Desktop/PCS/learnNode/mymodule.js",
+		"/home/matthew/Desktop/PCS/learnNode/fileread.js",
+		"/home/matthew/.config/sublime-text-3/Packages/User/sublime-API-Completions-Package.sublime-settings",
+		"/home/matthew/.config/sublime-text-3/Packages/JavaScript and jQuery API Completions/sublime-API-Completions-Package.sublime-settings",
+		"/home/matthew/Desktop/PCS/jsHomework/jsn-sum14-4/crouse/mattHW4.js",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW3/mattHw3.js",
+		"/home/matthew/Desktop/PCS/learnNode/fileread",
+		"/home/matthew/Desktop/PCS/jsHomework/hw4pic.ora",
+		"/home/matthew/Desktop/PCS/test-tts/app.js",
+		"/home/matthew/Desktop/PCS/test-tts/test.js",
+		"/home/matthew/Desktop/PCS/learnNode/myprogram.js",
+		"/home/matthew/Desktop/PCS/jsHomework/jsn-sum14-4/Crousem/README.txt",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW3/deque-template.js",
+		"/home/matthew/Desktop/WebDev/testing.js",
+		"/home/matthew/Desktop/WebDev/name3.js",
+		"/home/matthew/Desktop/WebDev/name2.js",
+		"/home/matthew/Desktop/WebDev/name.js",
+		"/home/matthew/Desktop/WebDev/index.js",
+		"/home/matthew/Desktop/WebDev/plus.js",
+		"/home/matthew/Desktop/PCS/jsClass/hw2/hw2/js/hw2.js",
+		"/home/matthew/Desktop/PCS/jsClass/jsn-sum14-1/hw1.js",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW3/deque1.js",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW1/solutionV-RomanNvms.js",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW2/HW-week2.md",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW3/HW3.md",
+		"/home/matthew/Desktop/PCS/retro.txt",
+		"/home/matthew/Desktop/PCS/js-night/core-js-lessons/exercises/HW3/solution-cards3.js"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"C:\\Users\\Matt\\Dropbox\\PCS\\jsHomework\\hw9testing",
+			"C:\\Users\\Matt\\Dropbox\\PCS\\jsHomework",
+			"C:\\Users\\Matt\\Desktop\\Portfolio\\Portfolio",
+			"C:\\Users\\Matt\\Dropbox\\PCS\\jsHomework\\jsn-sum14-9",
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"temp",
+			"cardsCollection",
+			"todo",
+			"todoInput",
+			"add-todo",
+			"contacts",
+			"%3Ctr",
+			"3Ctr",
+			"Ctr",
+			"console",
+			"that",
+			"JavaScript",
+			"Advanced",
+			"advanced",
+			".about",
+			"about",
+			"im",
+			"Body",
+			"body",
+			"connect",
+			"connect with us",
+			"equal",
+			"row equal",
+			"@media only",
+			"}",
+			"@media only",
+			"				@",
+			"@media only",
+			"}",
+			"}.",
+			"}",
+			"{",
+			"}",
+			"equal",
+			"MYWORK",
+			"my work",
+			"}",
+			"services",
+			"academy raider",
+			"%20",
+			"backbone",
+			"back",
+			"maxparams",
+			"Backbone",
+			"TodoListView",
+			"todo-list",
+			"list-main-view",
+			"todo-list",
+			"to-do-list",
+			"todos",
+			"TodoMainView",
+			"Todos",
+			"first name",
+			"boder",
+			"loginbutton",
+			"mktEditable",
+			"<div class=\"mktEditable\"",
+			"padding: .5em 0em .5em 0em",
+			"1em 0em 1em 0em",
+			"height",
+			"000000",
+			"collapese",
+			"get started",
+			"click",
+			"<a",
+			"img",
+			"get started",
+			"img",
+			"login",
+			"bgcolor",
+			"title",
+			"mktEditable",
+			"class",
+			"center",
+			"colapse",
+			"eight",
+			"weight",
+			"eight",
+			"ul",
+			"x",
+			"array",
+			"board",
+			"some",
+			"somecards",
+			"id",
+			"factory",
+			"makeCard",
+			"cardBox",
+			"alias",
+			"twelve col",
+			"twelve",
+			"MOMENTUM",
+			"intersection",
+			"merged",
+			"p",
+			"y",
+			"x",
+			"ul",
+			"Message",
+			"appt",
+			"apt",
+			"logo",
+			"header"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"card",
+			"cardInput",
+			"add-card",
+			"input",
+			" ",
+			"WishListView",
+			"wLists",
+			"border",
+			"",
+			".2em 0em .2em 0em",
+			".5em 0em .5em 0em",
+			"X",
+			"this.array",
+			"board",
+			"array",
+			"ID",
+			"cardFactory",
+			"cardObj",
+			"cardBox",
+			"CM WebDevelopment",
+			"intersec",
+			"intersection",
+			"prop",
+			"objB",
+			"objA",
+			"Massage"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/database/dbMain.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								234,
+								234
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"open_with_edit": true,
+							"sublime_auto_complete": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "/C/Users/Matt/Dropbox/PCS/Capstone/Capstone-Project/public/database/database.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5054,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4328,
+								4328
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3146.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 346.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "capstone.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 275.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

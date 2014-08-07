@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <title>MTG Wish list</title>
-  <link rel="stylesheet" href="css/bootstrap.css">
-
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../public/mystyle.css" />
   <script type="text/javascript" src="js/lib/jquery.js"></script>
   <script type="text/javascript" src="js/lib/M14.json"></script>
   <script type="text/javascript" src="js/lib/underscore.js"></script>
@@ -13,24 +15,54 @@
   <script type="text/javascript" src="js/lib/hbs.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 
+  <style>
+  h1{padding-left:80px; color:white;}
+  label{color:white;}
+  form{padding-left:80px; padding-right: 600px}
+  button{margin-left:80px; margin-top: 10px}
+  td{padding-left:80px;}
+  body{background-color: black; }
+  img:hover{filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */}
+
+  img{  filter: none;
+  -webkit-filter: grayscale(0%);}
+  .banner{
+    margin-bottom: 0;
+    background: -webkit-linear-gradient(black, #294537); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(black, #294537); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #294537); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(black, #294537); /* Standard syntax */
+  padding-bottom:10px;
+  }
+  hr{margin:0;}
+  </style>
+
+
 </head>
-<body style='background-color:#C0C0C0'>
+<body >
+  <div class="form-group banner">
   <h1>Add a Card</h1>
-  <div class="form-group">
-  <form id = "form">
-    <label for="card-input">Card Title</label>
-    <input name ="cardName" id="card-input" class="form-control" type="text">
-  </form>
+    <form id = "form">
+      <label form="card-input">Card Title</label>
+      <input name ="cardName" id="card-input" class="form-control" type="text">
+    </form>
     <button id="btn-add" class="btn btn-success">Add card</button>
   </div>
-  <br><hr>
-<h1>Wish List</h1>
-<div class="" style="padding-left:20px" >
-<table class="table" style ="table-layout: fixed; width: 500px;" >
-<tbody>
-
-</tbody>
-</table>
+  <br>
+  <hr>
+  <div class = "row" style="background-color:black; background-image:url('../imgs/shadows.jpg');
+background-repeat:no-repeat;
+background-attachment:fixed;">
+  <h1>Wish List</h1>
+  <div class ="row">
+    <div class=".col-mid-6" style="padding-left:20px" >
+      <table class="table" style ="table-layout: fixed; width: 500px;" >
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 </body>

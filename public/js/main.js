@@ -96,10 +96,10 @@ var HomeView = Backbone.View.extend({
       console.log(temp);
       for (var i=0; i < this.collection.length;++i){
         console.log(this.collection.length);
-        temp +='<tr><td style ="display: inline-block; width: 200">' +
-        '<img width="200" class="img-responsive" src= '+
+        temp +='<tr><td style ="width:80px"></td><td class ="imgstyle">' +
+        '<img class = "imgwidth img-responsive" src= '+
         this.collection.models[i].attributes.img +'></td>' +
-        '<td style ="float: left width:200" align ="left">' +
+        '<td class = "cardInfo">' +
         this.collection.models[i].attributes.text+'</td></tr>';
        }
          $(this.$el).html(temp);

@@ -1,0 +1,38 @@
+/*.imgstyle{
+    display: inline-block; width: 200;
+}
+
+.imgwidth {
+    width: 200;
+}
+
+.imgInfo{
+    float: left;
+    width:200;
+    align:left;
+}
+
+.tableClass {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#form{
+    width:200;
+}
+
+#card-input{
+    width:200;
+}
+
+
+.form-control{
+    width:200;
+}
+
+body
+{
+background-image:url('../imgs/shadows.jpg');
+background-repeat:no-repeat;
+background-attachment:fixed;*/
+}
